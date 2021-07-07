@@ -9,14 +9,14 @@
     <div class="rood"><span @click="$emit('close')"></span></div>
      <div class="form-element">
        <label for="email"><span class="label">E-mail</span></label>
-       <input id="email" type="email" @keyup.88="$emit('close')" :class="{ error: $v.form.email.$invalid }" placeholder="ivan@mail.ru" v-model.trim="$v.form.email.$model"/>
+       <input id="email" type="email" :class="{ error: $v.form.email.$invalid }" placeholder="ivan@mail.ru" v-model.trim="$v.form.email.$model"/>
        <!-- Error message -->
        <div class="error-message"><span v-if="!$v.form.email.required">Field is required</span><span v-if="!$v.form.email.email">Not valid E-mail address</span></div>
      </div>
 
      <div class="form-element">
        <label for="password"><span class="label">Password</span></label>
-       <input id="password" type="password" @keyup.88="$emit('close')" :class="{ error: $v.form.password.$invalid }" v-model.trim="$v.form.password.$model"/>
+       <input id="password" type="password" :class="{ error: $v.form.password.$invalid }" v-model.trim="$v.form.password.$model"/>
        <!-- Error message -->
        <div class="error-message"><span v-if="!$v.form.password.required">Field is required</span></div>
      </div>
@@ -49,6 +49,10 @@ export default {
   computed: {
     users() { return this.$store.state.auth.users.data },
   },
+  mounted() {
+    // Listener / anti pattern DOM
+    document.addEventListener('keydown', this.listener);
+  },
   validations: {
     form: {
       email               : { required, email },
@@ -56,6 +60,12 @@ export default {
     }
   },
   methods: {
+
+    listener(event) {
+      if(event.keyCode === 88) {
+        this.$emit('close')
+      }
+    },
 
     // Auth user
     submit() {
@@ -96,7 +106,12 @@ export default {
         }
         this.$notification.show('error', 'Login or password entered incorrectly')
       }
-    }
+    },
+
+    // Delete listener
+    beforeDestroy() {
+      document.removeEventListener('keydown', this.listener);
+    },
   }
 }
 </script>
