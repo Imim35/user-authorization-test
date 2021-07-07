@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "email": "never_lucky@gmail.com",
+      "password": "1111"
+    },
+    {
+      "id": 2,
+      "email": "operator@gmail.com",
+      "password": "2222"
+    },
+    {
+      "id": 3,
+      "email": "director@gmail.com",
+      "password": "3333"
+    },
+    {
+      "id": 4,
+      "email": "supervisor@gmail.com",
+      "password": "4444"
+    }
+  ]
+}
+
