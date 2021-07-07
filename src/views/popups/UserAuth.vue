@@ -1,5 +1,5 @@
 <template>
- <div class="auth-user "  v-if="initialized">
+ <div class="auth-user">
    <div class="auth-user__card">
      <img src="@/assets/Icon.svg" alt="User Avatar">
    </div>
@@ -62,9 +62,7 @@ export default {
   methods: {
 
     listener(event) {
-      if(event.keyCode === 88) {
-        this.$emit('close')
-      }
+      if(event.keyCode === 88) this.$emit('close')
     },
 
     // Auth user

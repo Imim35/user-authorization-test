@@ -6,35 +6,32 @@ export default {
   },
   methods: {
 
-    // Базовая инициализация
-    // вызывается если базовая инициализация компонента не реализована.
+    // Basic initialization
     async initialize() {
       return true
     },
   },
 
-  // Запуск инициализации окна при открытии.
-  // Инициализация компонента.
+  // Component initialization.
   async created() {
     try {
       await this.initialize()
         .then(async () => {
 
-          // Установка значения завершения инициализации.
+          // Sets the initialization complete value.
           this.initialized = true;
 
-          // Событие загрузки popup
+          // Popup load event
           this.$emit('loaded')
 
         })
     }
-      // Отображение уведомления ошибки
+      // Display error notification
     catch (e) {
       this.$notification.show('error', e.message)
     }
   },
 
-  // Отписка от событий при закрытии окна.
   beforeDestroy() {
     this.initialized = false
   }

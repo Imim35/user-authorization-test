@@ -63,7 +63,7 @@ export default {
 .fade-popup-enter-active, .fade-popup-leave-active {
   transition: opacity .2s;
 }
-.fade-popup-enter, .fade-popup-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+.fade-popup-enter, .fade-popup-leave-to {
   opacity: 0;
 }
 </style>
